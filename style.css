@@ -1,0 +1,141 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.container:hover {
+  transform: scale(1.01);
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+#cityInput {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #000;
+}
+
+#searchBtn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#searchBtn:hover {
+  background: #ffdb4d;
+  transform: translateY(-2px);
+}
+
+#searchBtn:active {
+  transform: scale(0.95);
+}
+
+#suggestions {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  color: #000;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+}
+
+#suggestions div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#suggestions div:hover {
+  background: #f2f2f2;
+}
+
+.weather {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.weather .icon {
+  margin-top: 15px;
+  width: 90px;
+  height: 90px;
+  transition: transform 0.3s ease;
+}
+
+.weather .icon:hover {
+  transform: scale(1.1);
+}
+
+.weather h1 {
+  font-size: 48px;
+  margin: 10px 0;
+}
+
+.weather h2 {
+  font-size: 26px;
+  margin: 5px 0;
+}
+
+.details {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.details p {
+  margin: 0;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background: rgba(255,255,255,0.2);
+  font-weight: bold;
+}
