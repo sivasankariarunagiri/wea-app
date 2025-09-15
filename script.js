@@ -27,13 +27,17 @@ function isValidCityName(city) {
   return /^[a-zA-Z\s]+$/.test(city);
 }
 
-// Suggestions from GeoDB (start from 1 letter)
+// Suggestions from GeoDB 
 cityInput.addEventListener("input", () => {
   const query = cityInput.value.trim();
-  if (query.length < 1 || !isValidCityName(query)) {
+   if (query.length < 1 || !isValidCityName(query)) {
     suggestionsBox.style.display = "none";
     return;
   }
+
+  // Show loading message
+  suggestionsBox.style.display = "block";
+  suggestionsBox.innerHTML = `<div>Loading suggestions...</div>`;
 
   fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${encodeURIComponent(query)}`, {
     method: "GET",
@@ -43,7 +47,7 @@ cityInput.addEventListener("input", () => {
     .then(data => {
       suggestionsBox.innerHTML = "";
       if (!data.data.length) {
-        suggestionsBox.innerHTML = `<div>No results found</div>`;
+        suggestionsBox.innerHTML = `<div>No cities found. Try a different name.</div>`;
       } else {
         data.data.forEach(city => {
           const div = document.createElement("div");
@@ -58,7 +62,7 @@ cityInput.addEventListener("input", () => {
       suggestionsBox.style.display = "block";
     })
     .catch(() => {
-      suggestionsBox.innerHTML = `<div>Error fetching suggestions</div>`;
+      suggestionsBox.innerHTML = `<div>Couldn’t load suggestions. Please check your internet and try again.</div>`;
       suggestionsBox.style.display = "block";
     });
 });
@@ -83,13 +87,13 @@ function fetchWeather() {
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        alert("City not found");
+        alert("City not found. Please check the name and try again.");
         return;
       }
       renderWeatherUI(data);
       fetchHistory(city);
     })
-    .catch(() => alert("Error fetching weather"))
+    .catch(() => alert("Unable to fetch weather. Please check your internet connection."))
     .finally(() => setLoading(false));
 }
 
